@@ -46,3 +46,10 @@ gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 # gem 'bcrypt'
+
+
+# In console load these:
+# rails g rails_footnotes:install
+# rails g bootstrap:install sass 
+# rails g bootstrap:install less
+# rails g bootstrap:install static
