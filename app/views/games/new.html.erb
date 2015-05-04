@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       
-        <li><a href="#">Home<span class="sr-only">(current)</span></a></li>
+        <li><a href="/dashboards/new">Home<span class="sr-only">(current)</span></a></li>
        
         <li class='active'><a href="/games/index">Trading Post</a></li>
         <li><a href="/games/index">Game Forums</a></li>
@@ -58,34 +58,44 @@
     </div>
   </div>
  
+  <div class="form-group">
+    <label for="inputGenre" class="col-sm-2 control-label">Console</label>
+    <div class="col-sm-10">
+      <select class='form-control' id='inputGenre' placeholder='Genre Required'>
+        <option>Microsoft Xbox</option>
+        <option>Microsoft Xbox 360</option>
+        <option>Microsoft Xbox One</option>
+        <option>Nintendo Game Cube</option>
+        <option>Nintendo 64</option>
+        <option>Nintendo Wii</option>
+        <option>Nintendo Wii U</option>
+        <option>Sega Dreamcast</option>
+        <option>Sony Playstation</option>
+        <option>Sony Playstation 2</option>
+        <option>Sony Playstation 3</option>
+        <option>Sony Playstation 4</option>
+      </select>
+    </div>
+  </div>
+
 <div class="form-group">
     <label for="inputGenre" class="col-sm-2 control-label">Genre</label>
     <div class="col-sm-10">
       <select class='form-control' id='inputGenre' placeholder='Genre Required'>
         <option>Action</option>
-        <option>Shooter</option>
         <option>Adventure</option>
+        <option>Board Games</option>
         <option>Role-playing</option>
-        <option></option>
+        <option>Role-playing MMO</option>
+        <option>Shooter</option>
+        <option>Simulation</option>
+        <option>Sports</option>
+        <option>Strategy</option>
       </select>
     </div>
   </div>
 
 
-  <div class="form-group">
-    <label for="inputGenre" class="col-sm-2 control-label">Platform</label>
-    <div class="col-sm-10">
-      <select class='form-control' id='inputGenre' placeholder='Genre Required'>
-        <option>Xbox</option>
-        <option>Xbox 360</option>
-        <option>XboxOne</option>
-        <option>Playstation</option>
-        <option>Playstation 2</option>
-        <option>Playstation 3</option>
-        <option></option>
-      </select>
-    </div>
-  </div>
  
 <div class="form-group">
     <label for="inputDescription" class="col-sm-2 control-label">Description</label>
@@ -95,7 +105,7 @@
   </div>
 
 <div class="form-group">
-    <label for="inputDescription" class="col-sm-2 control-label"></label>
+    <label for="inputDescription" class="col-sm-2 control-label">Quality</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="inputDescription" placeholder="Description">
     </div>
