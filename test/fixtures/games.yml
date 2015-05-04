@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  genre: MyString
+  description: MyString
+  quality: MyString
+  trade_status: MyString
+  trade_price: MyString
+  sell_status: MyString
+  sell_price: 1.5
+  user_id: 1
+
+two:
+  title: MyString
+  genre: MyString
+  description: MyString
+  quality: MyString
+  trade_status: MyString
+  trade_price: MyString
+  sell_status: MyString
+  sell_price: 1.5
+  user_id: 1
