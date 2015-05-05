@@ -21,8 +21,7 @@ class GamesController < ApplicationController
                       sell_status: params[:sell_status],
                       sell_price: params[:sell_price],
                       user_id: session[:user_id],
-                      platform: params[:console]
-                      ) 
+                      platform: params[:console]) 
       redirect_to '/dashboards/new'
     end
   end
@@ -30,10 +29,11 @@ class GamesController < ApplicationController
   def edit
   end
 
-  def upadate
+  def update
   end
 
   def show
+    @allGames = Game.all
   end
 
   def delete
