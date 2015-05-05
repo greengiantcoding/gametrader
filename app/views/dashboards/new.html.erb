@@ -54,11 +54,9 @@
 <div class='col-sm-6 col-sm-offset-3'>
 
 <p class='centerText'>You currently have <%= @myTrades.length %> games in the Trading Post.</p>
-<% if @myTrades.length == 0 then %>
 <p class='centerText'><a href='/games/new'>Trade/Sell a game here!</a></p>
-<% else @myTrades.each do |trade| %>
+<% if @myTrades.length > 0 then @myTrades.each do |trade| %>
 <p><%= trade.title %></p>
-
 <% end end %>
 
 <div class='lineBreak'></div>
