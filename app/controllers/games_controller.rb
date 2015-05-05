@@ -36,6 +36,10 @@ class GamesController < ApplicationController
     @allGames = Game.all
   end
 
+  def showOne
+    @game = Game.find(params[:id])
+  end
+
   def delete
   end
 
