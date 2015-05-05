@@ -38,6 +38,7 @@ class GamesController < ApplicationController
 
   def showOne
     @game = Game.find(params[:id])
+    @owner = User.all.where(user_id: @game.user_id)
   end
 
   def delete
