@@ -1,9 +1,4 @@
 class UsersController < ApplicationController
-  def index
-  end
-
-  def new
-  end
 
   def create
     if params[:password] != params[:confirm] or params[:confirm].length == 0 
@@ -19,18 +14,6 @@ class UsersController < ApplicationController
         then Privilege.create(user_id: @newUser.id, access: 'Dev')
       else Privilege.create(user_id: @newUser.id, access: 'Public') end
       redirect_to '/sessions/new' end
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def show
-  end
-
-  def delete
   end
 
 end

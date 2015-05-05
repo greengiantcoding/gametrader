@@ -1,234 +1,242 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <p class="navbar-brand">Gamer's Trading Post</p>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-      
-        <li><a href="/dashboards/new">Home<span class="sr-only">(current)</span></a></li>
-       
-        <li class='active'><a href="/games/index">Trading Post</a></li>
-        <li><a href="#">Game Forums</a></li>
-        <li><a href="#">Mailbox</a></li>
-       
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search all games for...">
+<!doctype html>
+<html>
+  <head>
+   <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <p class="navbar-brand">Gamer's Trading Post</p>
         </div>
-        <button type="submit" class="btn btn-default">Search</button>
-      </form>
-   
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          
+            <li><a href="/dashboards/new">Home<span class="sr-only">(current)</span></a></li>
+           
+            <li class='active'><a href="/games/index">Trading Post</a></li>
+            <li><a href="#">Game Forums</a></li>
+            <li><a href="#">Mailbox</a></li>
+           
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search all games for...">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+       
+
+         
+            <li class="dropdown nav navbar-nav navbar-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Edit Profile</a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="/sessions/destroy">Sign Out</a></li>
+              </ul>
+            </li>
+       
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <!-- END NAVBAR - - START MAIN PAGE -->
+
+
+    <form class="form-horizontal col-sm-6 col-sm-offset-3" action='/games' method='post'>
+      <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>
+      <h3 class='centerText underlineText'>Game Info</h3>
+      
+      <div class="form-group">
+        <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name='title' id="inputTitle" placeholder="Title" required>
+        </div>
+      </div>
      
-        <li class="dropdown nav navbar-nav navbar-right">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Edit Profile</a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="/sessions/destroy">Sign Out</a></li>
-          </ul>
-        </li>
-   
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+      <div class="form-group">
+        <label for="inputGenre" class="col-sm-2 control-label">Console</label>
+        <div class="col-sm-10">
+          <select class='form-control' name='console' id='inputGenre' required>
+            <option>Microsoft Xbox</option>
+            <option>Microsoft Xbox 360</option>
+            <option>Microsoft Xbox One</option>
+            <option>Nintendo Game Cube</option>
+            <option>Nintendo 64</option>
+            <option>Nintendo Wii</option>
+            <option>Nintendo Wii U</option>
+            <option>Sega Dreamcast</option>
+            <option>Sony Playstation</option>
+            <option>Sony Playstation 2</option>
+            <option>Sony Playstation 3</option>
+            <option>Sony Playstation 4</option>
+          </select>
+        </div>
+      </div>
 
-
-<!-- END NAVBAR - - START MAIN PAGE -->
-
-
-<form class="form-horizontal col-sm-6 col-sm-offset-3" action='/games' method='post'>
-  <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>
-  <h3 class='centerText underlineText'>Game Info</h3>
-  
-  <div class="form-group">
-    <label for="inputTitle" class="col-sm-2 control-label">Title</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name='title' id="inputTitle" placeholder="Title" required>
-    </div>
-  </div>
- 
-  <div class="form-group">
-    <label for="inputGenre" class="col-sm-2 control-label">Console</label>
-    <div class="col-sm-10">
-      <select class='form-control' name='console' id='inputGenre' required>
-        <option>Microsoft Xbox</option>
-        <option>Microsoft Xbox 360</option>
-        <option>Microsoft Xbox One</option>
-        <option>Nintendo Game Cube</option>
-        <option>Nintendo 64</option>
-        <option>Nintendo Wii</option>
-        <option>Nintendo Wii U</option>
-        <option>Sega Dreamcast</option>
-        <option>Sony Playstation</option>
-        <option>Sony Playstation 2</option>
-        <option>Sony Playstation 3</option>
-        <option>Sony Playstation 4</option>
-      </select>
-    </div>
-  </div>
-
-<div class="form-group">
-    <label for="inputGenre" class="col-sm-2 control-label">Genre</label>
-    <div class="col-sm-10">
-      <select class='form-control' name='genre' id='inputGenre' required>
-        <option>Action</option>
-        <option>Adventure</option>
-        <option>Classic Games</option>
-        <option>Role-playing</option>
-        <option>MMO-RPG</option>
-        <option>Shooter</option>
-        <option>Simulation</option>
-        <option>Sports</option>
-        <option>Strategy</option>
-      </select>
-    </div>
-</div>
- 
-<div class="form-group">
-    <label for="inputDescription" class="col-sm-2 control-label">Description</label>
-    <div class="col-sm-10">
-      <textarea class="form-control" id="inputDescription" name='description' placeholder="Description"></textarea>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="inputDescription" class="col-sm-2 control-label">Quality</label>
-    <div class="col-sm-10">
-      <select class='form-control' name='quality' id='inputGenre' required>
-        <option>Brand New</option>
-        <option>Like New</option>
-        <option>Good</option>
-        <option>Poor</option>
-      </select>
-    </div>
-</div>
-<!-- TRADE FORM -->
-<div>
-  <div class='col-sm-6'>
-    <h3 class='centerText underlineText'>Trade Info</h3>
-    <% if flash[:trade_error] then %>
-    <div>
-      <%= flash[:trade_error] %>
-    </div>
-    <% end %>
     <div class="form-group">
-        <label for="inputTrade" class="col-sm-5 control-label">Trade Game?</label>
-        <div class="col-sm-7">
-          <select class="form-control" id="inputTrade" name='trade_status'>
-            <option>Yes</option>
-            <option>No</option>
+        <label for="inputGenre" class="col-sm-2 control-label">Genre</label>
+        <div class="col-sm-10">
+          <select class='form-control' name='genre' id='inputGenre' required>
+            <option>Action</option>
+            <option>Adventure</option>
+            <option>Classic Games</option>
+            <option>Role-playing</option>
+            <option>MMO-RPG</option>
+            <option>Shooter</option>
+            <option>Simulation</option>
+            <option>Sports</option>
+            <option>Strategy</option>
           </select>
         </div>
     </div>
-      <div class="form-group">
-        <label for="inputSellPrice" class="col-sm-5 control-label">I'll trade for:</label>
-        <div class="col-sm-10 col-sm-offset-1">
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                  <a class='collapsed' data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                   Select A Genre
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                  <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="Action" aria-label="...">Action
-                  </label><br>
-                   <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="Adventure" aria-label="...">Adventure
-                  </label><br>
-                   <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="Classic Games" aria-label="...">Classic Games
-                  </label><br>
-                   <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="Role-Playing" aria-label="...">Role-Playing
-                  </label><br>
-                   <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="MMO Role-Playing" aria-label="...">MMO-RPG
-                  </label><br>
-                   <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="Shooter" aria-label="...">Shooter
-                  </label><br>
-                   <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="Simulation" aria-label="...">Simulation
-                  </label><br>
-                   <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="Sports" aria-label="...">Sports
-                  </label><br>
-                   <label>
-                    <input type="checkbox"  name='trade_requirements[]' value="Strategy" aria-label="...">Strategy
-                  </label> 
+     
+    <div class="form-group">
+        <label for="inputDescription" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" id="inputDescription" name='description' placeholder="Description"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputDescription" class="col-sm-2 control-label">Quality</label>
+        <div class="col-sm-10">
+          <select class='form-control' name='quality' id='inputGenre' required>
+            <option>Brand New</option>
+            <option>Like New</option>
+            <option>Good</option>
+            <option>Poor</option>
+          </select>
+        </div>
+    </div>
+    <!-- TRADE FORM -->
+    <div>
+      <div class='col-sm-6'>
+        <h3 class='centerText underlineText'>Trade Info</h3>
+        <% if flash[:trade_error] then %>
+        <div>
+          <%= flash[:trade_error] %>
+        </div>
+        <% end %>
+        <div class="form-group">
+            <label for="inputTrade" class="col-sm-5 control-label">Trade Game?</label>
+            <div class="col-sm-7">
+              <select class="form-control" id="inputTrade" name='trade_status'>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+        </div>
+          <div class="form-group">
+            <label for="inputSellPrice" class="col-sm-5 control-label">I'll trade for:</label>
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                      <a class='collapsed' data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                       Select A Genre
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="Action" aria-label="...">Action
+                      </label><br>
+                       <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="Adventure" aria-label="...">Adventure
+                      </label><br>
+                       <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="Classic Games" aria-label="...">Classic Games
+                      </label><br>
+                       <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="Role-Playing" aria-label="...">Role-Playing
+                      </label><br>
+                       <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="MMO Role-Playing" aria-label="...">MMO-RPG
+                      </label><br>
+                       <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="Shooter" aria-label="...">Shooter
+                      </label><br>
+                       <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="Simulation" aria-label="...">Simulation
+                      </label><br>
+                       <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="Sports" aria-label="...">Sports
+                      </label><br>
+                       <label>
+                        <input type="checkbox"  name='trade_requirements[]' value="Strategy" aria-label="...">Strategy
+                      </label> 
+                    </div>
+                  </div>
                 </div>
+                <p>AND/OR</p>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Specific Game Title
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                      <input type='text' name='trade_requirements[]' placeholder='Enter Game Title'>
+                    </div>
+                  </div>
+                </div>  
               </div>
             </div>
-            <p>AND/OR</p>
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Specific Game Title
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  <input type='text' name='trade_requirements[]' placeholder='Enter Game Title'>
-                </div>
-              </div>
-            </div>  
           </div>
+      </div>
+    <!-- SELL FORM -->
+      <div class='col-sm-6'>
+        <h3 class='centerText underlineText'>Sell Info</h3>
+        <% if flash[:sell_error] then %>
+        <div>
+          <%= flash[:sell_error] %>
+        </div>
+        <% end %>
+          <div class="form-group">
+            <label for="inputSell" class="col-sm-5 control-label">Sell Game?</label>
+            <div class="col-sm-7">
+              <select class="form-control" id="inputSell" name='sell_status'>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputSellPrice" class="col-sm-5 control-label">Sell Game?</label>
+            <div class="col-sm-7">
+               <div class="input-group">
+                  <div class="input-group-addon">$</div>
+                  <input type="number" class="form-control" name='sell_price' id="exampleInputAmount" step='0.01' min='0.01' max='100.00' placeholder="Amount">
+              </div>
+            </div>
+          
         </div>
       </div>
-  </div>
-<!-- SELL FORM -->
-  <div class='col-sm-6'>
-    <h3 class='centerText underlineText'>Sell Info</h3>
-    <% if flash[:sell_error] then %>
-    <div>
-      <%= flash[:sell_error] %>
     </div>
-    <% end %>
-      <div class="form-group">
-        <label for="inputSell" class="col-sm-5 control-label">Sell Game?</label>
-        <div class="col-sm-7">
-          <select class="form-control" id="inputSell" name='sell_status'>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputSellPrice" class="col-sm-5 control-label">Sell Game?</label>
-        <div class="col-sm-7">
-           <div class="input-group">
-              <div class="input-group-addon">$</div>
-              <input type="number" class="form-control" name='sell_price' id="exampleInputAmount" step='0.01' min='0.01' max='100.00' placeholder="Amount">
-          </div>
-        </div>
-      
-    </div>
-  </div>
-</div>
 
-  <div class="form-group">
-    <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default">List Game</button>
-    </div>
-  </div>
-</form>
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-2">
+          <button type="submit" class="btn btn-default">List Game</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
