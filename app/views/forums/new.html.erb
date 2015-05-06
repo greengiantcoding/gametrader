@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+   <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <p class="navbar-brand">Gamer Forums</p>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          
+            <li><a href="/dashboards/new">Home<span class="sr-only">(current)</span></a></li>
+           
+            <li><a href="/games/index">Trading Post</a></li>
+            <li class='active'><a href="/forums">Game Forums</a></li>
+            <li><a href="#">Mailbox</a></li>
+           
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search all games for...">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+       
+
+         
+            <li class="dropdown nav navbar-nav navbar-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Edit Profile</a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="/sessions/destroy">Sign Out</a></li>
+              </ul>
+            </li>
+       
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <!-- END NAVBAR - - START NEW FORUM -->
+
+
+    <form class="form-horizontal col-sm-8 col-sm-offset-2" action='/forums' method='post'>
+      <input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>
+      <h3 class='centerText underlineText'>Game Info</h3>      
+        <div class="form-group">
+          <label for="inputGameCategory" class="col-sm-4 control-label">Game Category</label>
+          <div class="col-sm-6">
+            <select class='form-control' name='game_category' id='inputGameCategory' required>
+              <option>Action</option>
+              <option>Adventure</option>
+              <option>Classic Games</option>
+              <option>Role-playing</option>
+              <option>MMO-RPG</option>
+              <option>Shooter</option>
+              <option>Simulation</option>
+              <option>Sports</option>
+              <option>Strategy</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputTitle" class="col-sm-4 control-label">Game Title</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name='game_title' id="inputTitle" placeholder="Title" required>
+          </div>
+        </div>
+       
+        <h3 class='centerText underlineText'>Topic Info</h3>    
+        
+        <div class="form-group">
+          <label for="inputtopicTitle" class="col-sm-4 control-label">Topic Title</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name='topic_title' id="inputtopicTitle" placeholder="Topic Title" required>
+          </div>
+        </div>
+       
+        <div class="form-group">
+          <label for="inputContent" class="col-sm-4 control-label">Your Thoughts</label>
+          <div class="col-sm-6">
+            <textarea class="form-control" id="inputContent" name='topic_content' placeholder="Place your thoughts and wisdom here....."></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-5 col-sm-2">
+            <button type="submit" class="btn btn-default">List Game</button>
+          </div>
+        </div>        
+    </form>
+  </body>
+</html>

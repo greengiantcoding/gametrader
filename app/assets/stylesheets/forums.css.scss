@@ -1,0 +1,38 @@
+// Place all the styles related to the Forums controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.centerImage{
+	margin: 0 auto;
+}
+
+.spacer15{
+	margin-top: 15px;
+}
+
+.spacer50{
+	margin-top: 50px;
+}
+
+.fullHeight{
+	min-height: 800px;
+}
+
+.borderBottom{
+	border-bottom: 1px solid black;
+}
+.centerText{
+	text-align: center;
+}
+
+.underlineText{
+	text-decoration: underline;
+}
+
+.indent25{
+	padding-left: 25px;
+	padding-bottom: 20px;
+}
+
+.spacerBottom20{
+	margin-bottom: 20px;
+}
