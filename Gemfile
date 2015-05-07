@@ -45,6 +45,7 @@ gem 'jquery-ui-rails', '~> 4.2.1'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+gem 'font-awesome-less'
 # gem 'bcrypt'
 
 

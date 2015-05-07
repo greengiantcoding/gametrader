@@ -3,6 +3,14 @@ class ForumsController < ApplicationController
   	@allForums = Forum.all.order('game_category')
   	@forumCategories = Forum.all.group('game_category')
   	@forumGames = Forum.all.group('game_category').group('game_title')
+  	@forumComments = Comment.all.order('forum_id')
+    
+    @commentRatings = []
+    @forumComments.each do |comment|
+      @rating = Comment.find(comment.id).ratings.sum(:vote)
+      @commentRatings[comment.id] = @rating 
+     
+    end
   end
 
   def new
@@ -12,7 +20,7 @@ class ForumsController < ApplicationController
   	# @newForum = Forum.create(forum_params)
   	@newForum = Forum.create(game_title: params[:game_title], game_category: params[:game_category], topic_title: params[:topic_title], topic_content: params[:topic_content], user_id: session[:user_id])
 
-  	render '/forums/index'
+  	redirect_to '/forums'
   end
 
   def edit
@@ -25,3 +33,4 @@ class ForumsController < ApplicationController
   # end
 
 end
+

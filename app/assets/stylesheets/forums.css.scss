@@ -13,6 +13,14 @@
 	margin-top: 50px;
 }
 
+.text10{
+	font-size: 10px;
+}
+
+.textRight{
+	text-align: right;
+}
+
 .fullHeight{
 	min-height: 800px;
 }
@@ -33,6 +41,40 @@
 	padding-bottom: 20px;
 }
 
-.spacerBottom20{
-	margin-bottom: 20px;
+.mainAuthor{
+	text-align: right;
+}
+
+.titleBox{
+	border: 10px gray solid;
+	border-style: outset;
+	padding: 10px;
+	margin-bottom: 25px;
+
+}
+
+.centerItem{
+	margin: 0 auto;
+}
+
+.seeThrough{
+	background: none;
+	border: none;
+}
+
+.directionals{
+	padding-top: 150px;;	
+}
+
+.messageBox{
+	background-color: lightgray;
+	border: 10px silver solid;
+	border-style: ridge;
+	padding-right: 10px;
+	padding-top: 10px;
+	margin-bottom: 5px;
+}
+
+#bookTitle{
+	font-family: Fantasy;
 }

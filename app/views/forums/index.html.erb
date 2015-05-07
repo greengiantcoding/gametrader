@@ -66,10 +66,11 @@
 <div id="carousel-example-generic" class="carousel slide col-xs-12 fullHeight" data-ride="carousel" data-interval='false'>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-  	<div class='item active'>
-  		<p class='centerText spacer50'>The Organization of the Forum Book</p>
-  		<p class='centerText underlineText'>is as follows:</p>
-  		<p class='centerText'></p>
+  	<div class='item active' id='bookTitle'>
+  		<h1 class='centerText spacer50'>Gamer's Book</h1>
+  		<h3 class='centerText'>of Truths and Fables of the Past</h3>
+  		<h3 class='centerText'>Ideas and Realities of the Future</h3>
+  		<p class='centerText underlineText'>Anything Relating To Games and Gamers</p>
   	</div>
 	<% if @forumCategories then @forumCategories.each do |category| %>
    	<!--Start Item-->
@@ -81,52 +82,82 @@
 					  	<div class="panel panel-default">
 					   		<div class="panel-heading" role="tab" id="headingOne<%=game.id%>">
 					     	<h4 class="panel-title">
-					        	<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne<%=game.id%>" aria-expanded="true" aria-controls="collapseOne<%=game.id%>">
+					        	<div data-toggle="collapse" data-parent="#accordion" href="#collapseOne<%=game.id%>" aria-expanded="true" aria-controls="collapseOne<%=game.id%>">
 					          		<%=game.game_title%>
-					        	</a>
+					        	</div>
 					      	</h4>
 					    </div>
 
-				    	<div id="collapseOne<%=game.id%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne<%=game.id%>">
+				    	<div id="collapseOne<%=game.id%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<%=game.id%>">
 				      		<div class="panel-body">
 				        		<% @allForums.each do |forum|%>
 				        			<% if forum.game_category == game.game_category and forum.game_title == game.game_title then%>
 				        				<p data-toggle='modal' data-target='#myModal<%=forum.id%>'><%=forum.topic_title%></p>
 
-<div class="modal fade" id='myModal<%=forum.id%>'>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><%=forum.game_category%> - <%=forum.game_title%></h4>
-      </div>
-      <div class="modal-body">
-      	<h3 class='underlineText'><%=forum.topic_title%></h3>
-        <p class='spacerBottom20'>Gamer: <%=forum.user.first_name%> <%=forum.user.last_name%></p>
-        <h5 class='borderBottom indent25'><%=forum.topic_content%></h5>
+										<div class="modal fade" id='myModal<%=forum.id%>'>
+										  <div class="modal-dialog">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h4 class="modal-title"><%=forum.game_category%> - <%=forum.game_title%></h4>
+										      </div>
+										      <div class="modal-body">
+										      	<div class='titleBox'>
+										      		<h3 class='underlineText centerText'><%=forum.topic_title%></h3>
+										        	<h5 class='indent25'><%=forum.topic_content%></h5>
+										        	<p class='mainAuthor'>Gamer: <%=forum.user.first_name%> <%=forum.user.last_name%></p>
+										        </div>
 
-        <form>
-  			<div class="form-group">
-   				<label for="comment_content">Comment</label>
-   				<textarea class="form-control" id="comment_content" placeholder="Enter Comment"></textarea>
-  			</div>
+										        <% @forumComments.each do |comment| %>  
+										        	<% 	if comment.forum_id == forum.id then %>
 
-  			<button type="submit" class="btn btn-sm" <!-- action='/comments' method='post' -->>Submit</button>
-		</form>
+										        		<div class='col-xs-1 ratingBox'>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										        			<form action='/ratings' method='post'>
+										        				<input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>
+										        				<input type='hidden' name='comment_id' value='<%=comment.id%>'>
+										        				<input type='hidden' name='vote' value=1>
+										        				<button type='submit' class='seeThrough'><i class="fa fa-plus-circle"></i></button>
+										        			</form>
+										        			
+										        			<p class='centerText centerItem text10'><%=@commentRatings[comment.id]%></p>
+										        			<form action='/ratings' method='post'>
+										        				<input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>
+										        				<input type='hidden' name='comment_id' value='<%=comment.id%>'>
+										        				<input type='hidden' name='vote' value=-1>
+										        				<button type='submit' class='seeThrough'><i class="fa fa-minus-circle"></i></button>
+										        			</form>
 
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
+										        		</div>
+										        		<div class='col-xs-10 messageBox'>
+										        			<div class='col-xs-12'>
+										        				<p class='col-xs-8 col-xs-offset-2'><%=comment.content%></p>
+										        				<p class='col-xs-12 text10 textRight'><%=comment.user.first_name%> <%=comment.user.last_name%></p>
+										        			</div>
+										        		</div>
+										        	<% end %>
+										        <% end %>
+										        <form action='/comments' method='post'>
+										  			<input type='hidden' name='authenticity_token' value="<%=form_authenticity_token%>">
+										  			<input type='hidden' name='comment[user_id]' value='<%=session[:user_id]%>'>
+										  			<input type='hidden' name='comment[forum_id]' value='<%=forum.id%>'>
+										  			<div class="form-group">
+										   				<label for="comment_content">Comment</label>
+										   				<textarea class="form-control" name="comment[content]" id='comment_content' placeholder="Enter Comment"></textarea>
+										  			</div>
 
+										  			<button type="submit" class="btn btn-success btn-sm">Submit</button>
+												</form>
 
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-
+										      </div>
+										    </div><!-- /.modal-content -->
+										  </div><!-- /.modal-dialog -->
+										</div><!-- /.modal -->
 
 				        			<% end %>
 				        		<% end %>
@@ -143,112 +174,21 @@
 end
 %>
     <!--Start Item-->
-    <!-- <div class="item">
-					<div class="panel-group col-sm-6 col-sm-offset-3 spacer15" id="accordion" role="tablist" aria-multiselectable="true">
-					  <div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingOne">
-					      <h4 class="panel-title">
-					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					          Collapsible Group Item #1
-					        </a>
-					      </h4>
-					    </div>
-					    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-					      <div class="panel-body">
-					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					      </div>
-					    </div>
-					  </div>
-					  <div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingTwo">
-					      <h4 class="panel-title">
-					        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					          Collapsible Group Item #2
-					        </a>
-					      </h4>
-					    </div>
-					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-					      <div class="panel-body">
-					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					      </div>
-					    </div>
-					  </div>
-					  <div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingThree">
-					      <h4 class="panel-title">
-					        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					          Collapsible Group Item #3
-					        </a>
-					      </h4>
-					    </div>
-					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-					      <div class="panel-body">
-					        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					      </div>
-					    </div>
-					  </div>
-					</div>      
-    </div> -->
-    <!-- End Item -->
+
   </div>
 
   <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  <a class="left carousel-control directionals" href="#carousel-example-generic" role="button" data-slide="prev">
+    <i class="fa fa-chevron-left fa-5x" aria-hidden="true"></i>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  <a class="right carousel-control directionals" href="#carousel-example-generic" role="button" data-slide="next">
+    <i class="fa fa-chevron-right fa-5x" aria-hidden="true"></i>
     <span class="sr-only">Next</span>
   </a>
 </div>
 
-<!-- END SCROLL BAR - - START FORUMS -->
 
-<!-- <div class="panel-group col-sm-6 col-sm-offset-3 spacer15" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div> -->
 
 
 </body>
